@@ -1,3 +1,18 @@
 $enable-responsive-font-sizes: true !default;
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
+
+@font-face {
+    // Variable Font
+    font-family: 'Montserrat';
+    src: url('../fonts/montserrat.woff2');
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#app {
+    font-family: 'Montserrat';
+}
