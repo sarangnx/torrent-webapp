@@ -11,6 +11,7 @@
                 <span>No installs required</span>
                 <span>No additional softwares required</span>
             </div>
+            <button class="try-now">TRY NOW</button>
         </div>
         <div class="ship-container">
             <img src="@/assets/images/pirate-ship.svg" />
@@ -39,21 +40,44 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: flex-start;
         .title {
             display: grid;
             font-size: 48px;
             font-weight: bold;
+            margin-bottom: 20px;
         }
         .sub-title {
             display: grid;
             font-size: 1rem;
             color: #676767;
+            margin-bottom: 50px;
         }
     }
+
     .ship-container {
         grid-area: right;
         img {
             width: 100%;
+        }
+    }
+
+    .try-now {
+        border: 0px;
+        background: #6d4c40;
+        color: white;
+        padding: 0.9rem 4rem;
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 0.75rem;
+        transition: box-shadow 0.2s ease-in-out;
+        transition: transform 0.2s ease-in-out;
+        &:hover {
+            box-shadow: 4px 4px 10px -5px black;
+        }
+        &:active {
+            box-shadow: inset 4px 4px 10px -5px black;
+            transform: scale(0.96, 0.96);
         }
     }
 }
@@ -66,6 +90,7 @@ export default {
             grid-column: 2 / span 2;
             grid-row: 1;
             text-align: center;
+            align-items: center;
             .title {
                 font-size: 30px;
             }
