@@ -14,7 +14,7 @@
             <button class="try-now">TRY NOW</button>
         </div>
         <div class="ship-container">
-            <img src="@/assets/images/pirate-ship.svg" />
+            <img src="@/assets/images/pirate-ship.svg" alt="Black Pearl" title="Black Pearl" />
         </div>
     </div>
 </template>
@@ -31,6 +31,7 @@ export default {
 
 <style lang="scss">
 .home {
+    height: calc(100vh - 4.5rem);
     display: grid;
     grid-template-columns: 1fr 5fr 5fr 1fr;
     grid-template-areas: '. left right .';
@@ -57,6 +58,9 @@ export default {
 
     .ship-container {
         grid-area: right;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
         img {
             width: 100%;
         }
