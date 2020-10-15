@@ -11,7 +11,7 @@
                 <span>No installs required</span>
                 <span>No additional softwares required</span>
             </div>
-            <button class="try-now">TRY NOW</button>
+            <button class="try-now" @click="$router.push('/app')">TRY NOW</button>
         </div>
         <div class="ship-container">
             <img src="@/assets/images/pirate-ship.svg" alt="Black Pearl" title="Black Pearl" />
