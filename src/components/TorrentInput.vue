@@ -2,7 +2,7 @@
     <div class="torrent">
         <div class="input-group">
             <div class="magnet">
-                <input type="text" placeholder="Magnet URI or Link to .torrent file." />
+                <input type="text" size="1" placeholder="Magnet URI or Link to .torrent file." />
                 <button class="next">
                     <svg width="1em" height="1em" viewBox="0 0 16 16">
                         <path
@@ -67,6 +67,7 @@
             color: #6d4c40;
             font-weight: 500;
             flex-grow: 1;
+            outline: none;
             &::placeholder {
                 color: #6d4c40;
             }
@@ -76,7 +77,7 @@
             background: #6d4c40;
             border: 0px;
             border-radius: 10px;
-            padding: 0px 1.3rem;
+            padding: 0px 1rem;
             svg {
                 fill: white;
                 height: 1.2rem;
@@ -88,6 +89,27 @@
         .google-drive {
             display: flex;
             height: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .torrent {
+        .input-group {
+            grid-template-columns: 1fr auto;
+            .google-drive {
+                position: fixed;
+                height: 2.7rem;
+                bottom: 1rem;
+                right: 0px;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 11fr 1fr;
+                justify-items: end;
+                button {
+                    width: 3.2rem;
+                }
+            }
         }
     }
 }
