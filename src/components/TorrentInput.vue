@@ -55,10 +55,6 @@
         }
 
         .magnet input {
-            margin-right: 1rem;
-        }
-
-        .magnet input {
             background: #e1cdc6;
             border: 0px;
             padding: 0.7rem 1.4rem;
@@ -68,8 +64,13 @@
             font-weight: 500;
             flex-grow: 1;
             outline: none;
+            box-shadow: 0px 0px 5px -3px black;
+            margin-right: 1rem;
             &::placeholder {
                 color: #6d4c40;
+            }
+            &:focus {
+                box-shadow: 0px 0px 0px 1px #6d4c40;
             }
         }
 
@@ -78,6 +79,11 @@
             border: 0px;
             border-radius: 10px;
             padding: 0px 1rem;
+            box-shadow: 0px 0px 10px -5px black;
+            &:active {
+                box-shadow: inset 4px 4px 10px -5px black;
+                transform: scale(0.96, 0.96);
+            }
             svg {
                 fill: white;
                 height: 1.2rem;
