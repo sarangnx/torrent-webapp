@@ -64,9 +64,11 @@ body {
     background: #6d4c40;
     border: 0px;
     border-radius: 10px;
-    padding: 0px 1rem;
+    padding: 1rem;
     box-shadow: 0px 0px 10px -5px black;
     outline: none;
+    cursor: pointer;
+
     &:active {
         box-shadow: inset 4px 4px 5px -5px black;
         transform: scale(0.96, 0.96);
