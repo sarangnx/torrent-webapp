@@ -53,9 +53,9 @@ export default {
         }
     },
     mounted() {
-        // if (this.timeout) {
-        //     setTimeout(this.close, this.timeout);
-        // }
+        if (this.timeout) {
+            setTimeout(this.close, this.timeout);
+        }
     },
     methods: {
         close() {
