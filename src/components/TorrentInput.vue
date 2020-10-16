@@ -56,7 +56,7 @@
 
         .magnet input {
             background: #e1cdc6;
-            border: 0px;
+            border: 1px solid transparent;
             padding: 0.7rem 1.4rem;
             border-radius: 10px;
             font-size: 0.85rem;
@@ -70,7 +70,7 @@
                 color: #6d4c40;
             }
             &:focus {
-                box-shadow: 0px 0px 0px 1px #6d4c40;
+                border: 1px solid #6d4c40;
             }
         }
 
