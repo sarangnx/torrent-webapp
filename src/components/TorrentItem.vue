@@ -64,4 +64,31 @@ export default {
         justify-self: center;
     }
 }
+
+@media (max-width: 768px) {
+    .torrent-item {
+        grid-template-columns: auto auto 4fr 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+
+        .torrent-item-name {
+            grid-column: 1 / span 3;
+        }
+
+        .torrent-item-size {
+            grid-row: 2;
+            grid-column: 1;
+        }
+
+        .torrent-item-count {
+            grid-row: 2;
+            grid-column: 2;
+        }
+
+        .torrent-item-download {
+            grid-row: 1 / span 2;
+            grid-column: 4;
+        }
+    }
+}
 </style>
