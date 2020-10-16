@@ -2,8 +2,14 @@
     <div class="torrent">
         <div class="input-group">
             <div class="magnet">
-                <input type="text" size="1" placeholder="Magnet URI or Link to .torrent file." />
-                <button class="button">
+                <input
+                    type="text"
+                    size="1"
+                    placeholder="Magnet URI or Link to .torrent file."
+                    v-model="link"
+                    @keyup.enter="sendLink"
+                />
+                <button class="button" @click="sendLink">
                     <svg width="1em" height="1em" viewBox="0 0 16 16">
                         <path
                             fill-rule="evenodd"
@@ -13,7 +19,8 @@
                 </button>
             </div>
             <div class="torrent-file">
-                <button class="button">
+                <input type="file" accept=".torrent" class="hidden" @change="loadFile($event)" ref="file" />
+                <button class="button" @click="openFileSelector">
                     <svg width="1em" height="1em" viewBox="0 0 16 16">
                         <path
                             fill-rule="evenodd"
@@ -38,6 +45,36 @@
         </div>
     </div>
 </template>
+
+<script>
+import isURL from 'validator/lib/isURL';
+import isMagentURI from 'validator/lib/isMagnetURI';
+
+export default {
+    data: () => ({
+        link: ''
+    }),
+    methods: {
+        sendLink() {
+            const link = this.link;
+            if (!isMagentURI(link) && !isURL(link)) {
+                this.$error({ message: 'Invalid Magnet URI or Link', timeout: 3000 });
+                return;
+            }
+
+            this.$emit('upload', link);
+        },
+        openFileSelector() {
+            this.$refs.file.click();
+        },
+        loadFile(event) {
+            const file = event.target.files[0];
+
+            this.$emit('upload', file);
+        }
+    }
+};
+</script>
 
 <style lang="scss">
 .torrent {
@@ -102,5 +139,9 @@
             }
         }
     }
+}
+
+.hidden {
+    display: none;
 }
 </style>
