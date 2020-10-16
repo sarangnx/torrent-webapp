@@ -1,11 +1,13 @@
 <template>
     <div class="notifications">
-        <notification
-            v-for="notification in notifications"
-            :key="notification.timestamp.getTime()"
-            v-bind="notification"
-            @close="removeNotification"
-        />
+        <transition-group enter-active-class="fadeInRight" leave-active-class="fadeOutRight" move-class="move">
+            <notification
+                v-for="notification in notifications"
+                :key="notification.timestamp.getTime()"
+                v-bind="notification"
+                @close="removeNotification"
+            />
+        </transition-group>
     </div>
 </template>
 
@@ -40,9 +42,7 @@ export default {
     grid-template-columns: 1fr 10fr 1fr;
     align-content: baseline;
     position: fixed;
-    left: 50%;
     top: 1rem;
-    transform: translateX(-50%);
     pointer-events: none;
 }
 
