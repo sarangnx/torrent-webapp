@@ -71,7 +71,7 @@ export default {
     z-index: 10000;
     display: flex;
     align-items: center;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1.5rem;
     justify-content: space-between;
     border-radius: 10px;
     pointer-events: all;
@@ -86,7 +86,6 @@ export default {
     .close {
         border: none;
         background: none;
-        padding: 0.5rem;
         font-size: 2rem;
         cursor: pointer;
     }
