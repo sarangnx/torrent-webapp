@@ -56,3 +56,28 @@ body {
     animation-duration: 0.3s;
     animation-fill-mode: both;
 }
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6d4c40;
+    border: 0px;
+    border-radius: 10px;
+    padding: 0px 1rem;
+    box-shadow: 0px 0px 10px -5px black;
+    outline: none;
+    &:active {
+        box-shadow: inset 4px 4px 5px -5px black;
+        transform: scale(0.96, 0.96);
+    }
+    svg {
+        fill: white;
+        height: 1.2rem;
+        width: 1.2rem;
+    }
+    &:hover,
+    &:focus {
+        background: #916d60;
+    }
+}
