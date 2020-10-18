@@ -27,6 +27,7 @@ export default {
 .torrent-list {
     display: grid;
     grid-template-columns: 1fr 10fr 1fr;
+    row-gap: 1rem;
     margin-top: 4rem;
 }
 </style>
