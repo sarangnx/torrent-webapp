@@ -19,15 +19,17 @@
 </template>
 
 <script>
+import bytes from 'bytes';
+
 export default {
     props: {
         name: String,
-        size: [String, Number],
+        size: [String, Number], // in bytes
         fileCount: [String, Number]
     },
     computed: {
         sizeComputed() {
-            return this.size;
+            return bytes(this.size);
         }
     }
 };
