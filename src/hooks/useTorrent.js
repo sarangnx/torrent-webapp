@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
 import store from '@/store';
 
@@ -46,6 +46,34 @@ export default function() {
             }
         }
     }
+
+    /**
+     * Used to get list of torrents that user already uploaded.
+     * This is useful when user navigates to any other page and comes back.
+     */
+    async function listTorrent() {
+        try {
+            const res = await axios({
+                method: 'get',
+                url: '/torrent/list',
+                params: {
+                    uid: uid.value
+                }
+            });
+
+            if (res.data && res.data.torrents) {
+                torrents.value = torrents.value.concat(res.data.torrents);
+            }
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
+                store.dispatch('notifications/notify', { message: err.response.data.message, type: 'error' });
+            } else {
+                store.dispatch('notifications/notify', { message: 'Something Went Wrong!', type: 'error' });
+            }
+        }
+    }
+
+    onMounted(listTorrent);
 
     return { torrents, addTorrent };
 }
