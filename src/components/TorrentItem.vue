@@ -1,6 +1,6 @@
 <template>
     <div class="torrent-item">
-        <span class="torrent-item-name">{{ name }}</span>
+        <span class="torrent-item-name" :title="name">{{ name }}</span>
         <span class="torrent-item-size">{{ sizeComputed }}</span>
         <span class="torrent-item-count">{{ fileCount }} File{{ fileCount > 1 ? 's' : '' }}</span>
         <button class="torrent-item-download button">
@@ -64,6 +64,12 @@ export default {
     .torrent-item-size,
     .torrent-item-count {
         justify-self: center;
+    }
+
+    .torrent-item-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
