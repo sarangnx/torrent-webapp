@@ -4,6 +4,8 @@ import router from './router';
 import store from './store';
 import plugins from './plugins';
 
+store.dispatch('user/init');
+
 createApp(App)
     .use(store)
     .use(router)
