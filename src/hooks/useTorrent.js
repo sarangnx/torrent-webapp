@@ -17,7 +17,7 @@ export default function() {
      */
     async function addTorrent(torrent) {
         const data = {
-            uid,
+            uid: uid.value,
             torrent
         };
 
