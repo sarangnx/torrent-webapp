@@ -3,7 +3,7 @@
         <span class="torrent-item-name" :title="name">{{ name }}</span>
         <span class="torrent-item-size">{{ sizeComputed }}</span>
         <span class="torrent-item-count">{{ fileCount }} File{{ fileCount > 1 ? 's' : '' }}</span>
-        <button class="torrent-item-download button">
+        <button class="torrent-item-download button" @click.stop @dblclick.stop>
             <svg width="1em" height="1em" viewBox="0 0 16 16">
                 <path
                     fill-rule="evenodd"

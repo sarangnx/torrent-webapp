@@ -6,6 +6,8 @@
             :name="torrent.name"
             :size="torrent.length"
             :fileCount="torrent.files.length"
+            @click="openTorrent(torrent.infoHash, $event)"
+            @dblclick="openTorrent(torrent.infoHash, $event)"
         />
     </div>
 </template>
@@ -19,6 +21,11 @@ export default {
     },
     props: {
         torrents: Array
+    },
+    methods: {
+        openTorrent(infoHash) {
+            this.$emit('open-torrent', infoHash);
+        }
     }
 };
 </script>
