@@ -2,10 +2,11 @@
     <top-bar />
     <torrent-input @upload="addTorrent" />
     <empty-page v-if="!torrents || !torrents.length" />
-    <router-view v-else v-bind="dynProps" @open-torrent="openTorrent" />
+    <router-view v-else v-bind="dynProps" @open-torrent="changeRoute" />
 </template>
 
 <script>
+import { watch } from 'vue';
 import TopBar from '@/components/TopBar';
 import TorrentInput from '@/components/TorrentInput';
 import EmptyPage from '@/components/EmptyPage';
@@ -18,7 +19,8 @@ export default {
         EmptyPage
     },
     props: {
-        torrent: String
+        torrent: String,
+        paths: [String, Array]
     },
     computed: {
         dynProps() {
@@ -30,9 +32,16 @@ export default {
         }
     },
     setup(props) {
-        const { torrents, addTorrent, openTorrent, files, root } = useTorrent(props.torrent);
+        const { torrents, addTorrent, openTorrent, files, root, changeRoute } = useTorrent(props.torrent);
 
-        return { torrents, addTorrent, openTorrent, files, root };
+        // open torrent when route changes
+        watch([props], () => {
+            if (props.torrent) {
+                openTorrent(props.torrent);
+            }
+        });
+
+        return { torrents, addTorrent, openTorrent, files, root, changeRoute };
     }
 };
 </script>
