@@ -7,9 +7,20 @@ const routes = [
         component: () => import(/* webpackChunkName: "home" */ '@/views/Home')
     },
     {
-        path: '/app',
+        path: '/torrent',
         name: 'Torrent',
-        component: () => import(/* webpackChunkName: "home" */ '@/views/Torrent')
+        component: () => import(/* webpackChunkName: "torrent" */ '@/views/Torrent'),
+        props: true,
+        children: [
+            {
+                path: '',
+                component: () => import(/* webpackChunkName: "torrent-list" */ '@/components/TorrentList')
+            },
+            {
+                path: ':torrent',
+                component: () => import(/* webpackChunkName: "torrent-list" */ '@/components/FileExplorer')
+            }
+        ]
     }
 ];
 
