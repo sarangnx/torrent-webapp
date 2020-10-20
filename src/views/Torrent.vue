@@ -35,11 +35,15 @@ export default {
         const { torrents, addTorrent, openTorrent, files, root, changeRoute } = useTorrent(props.torrent);
 
         // open torrent when route changes
-        watch([props], () => {
-            if (props.torrent) {
-                openTorrent(props.torrent);
+        watch(
+            () => props.torrent,
+            torrent => {
+                console.log(torrent);
+                if (torrent) {
+                    openTorrent(props.torrent);
+                }
             }
-        });
+        );
 
         return { torrents, addTorrent, openTorrent, files, root, changeRoute };
     }
