@@ -1,6 +1,12 @@
 <template>
     <div class="file-explorer">
-        <component v-for="file in tree.children" :key="file.name" :is="file.type" :item="file"></component>
+        <component
+            v-for="file in currentFolder.children"
+            :key="file.name"
+            :is="file.type"
+            :item="file"
+            @open-folder="openFolder"
+        ></component>
     </div>
 </template>
 
@@ -19,9 +25,9 @@ export default {
         root: String
     },
     setup(props) {
-        const { tree } = useFileExplorer(props.files, props.root);
+        const { tree, openFolder, currentFolder } = useFileExplorer(props.files, props.root);
 
-        return { tree };
+        return { tree, openFolder, currentFolder };
     }
 };
 </script>

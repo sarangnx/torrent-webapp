@@ -1,5 +1,5 @@
 <template>
-    <div class="folder" @click.stop="test(item.path)">
+    <div class="folder" @click.stop="openFolder(item.path)">
         <span class="folder-name">{{ item.name }}</span>
         <span class="folder-count">{{ item.count }} Files</span>
         <button class="folder-download button" @click.stop @dblclick.stop>
@@ -23,8 +23,8 @@ export default {
         item: Object
     },
     methods: {
-        test(f) {
-            console.log(f);
+        openFolder(path) {
+            this.$emit('open-folder', path);
         }
     }
 };
