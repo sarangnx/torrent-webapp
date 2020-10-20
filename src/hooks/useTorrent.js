@@ -93,18 +93,24 @@ export default function(torrentName) {
 
     /**
      * Find the selected torrent and add its files to files variable.
-     * And change route
      *
-     * @param {String} infoHash - infoHash of the torrent
+     * @param {String} name - name of the torrent
      */
-    function openTorrent(infoHash) {
-        const found = torrents.value.find(t => t.infoHash === infoHash);
+    function openTorrent(name) {
+        const found = torrents.value.find(t => t.name === name);
 
         files.value = found.files;
         root.value = found.name;
-
-        router.push(`/torrent/${found.name}`);
     }
 
-    return { torrents, addTorrent, openTorrent, files, root };
+    /**
+     * Change Route. Torrents are opened by changing the routes.
+     *
+     * @param {String} name - name of the torrent
+     */
+    function changeRoute(name) {
+        router.push(`/torrent/${name}`);
+    }
+
+    return { torrents, addTorrent, openTorrent, files, root, changeRoute };
 }
