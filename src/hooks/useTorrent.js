@@ -1,10 +1,11 @@
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import axios from 'axios';
 import store from '@/store';
+import router from '@/router';
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
-export default function() {
+export default function(torrentName) {
     // Returned torrent metadata is stored here
     const torrents = ref([]);
     const uid = computed(() => store.state.user.uid);
@@ -63,6 +64,17 @@ export default function() {
 
             if (res.data && res.data.torrents) {
                 torrents.value = torrents.value.concat(res.data.torrents);
+
+                /**
+                 * torrentName is passed as props when /torrent/:torrent route is visited directly
+                 * or refreshed at that page.
+                 */
+                if (torrentName) {
+                    const found = torrents.value.find(t => t.name === torrentName);
+
+                    files.value = found.files;
+                    root.value = found.name;
+                }
             }
         } catch (err) {
             if (err.response && err.response.data && err.response.data.message) {
@@ -73,7 +85,26 @@ export default function() {
         }
     }
 
-    onMounted(listTorrent);
+    listTorrent();
 
-    return { torrents, addTorrent };
+    // files in the selected torrent is stored here
+    const files = ref([]);
+    const root = ref('');
+
+    /**
+     * Find the selected torrent and add its files to files variable.
+     * And change route
+     *
+     * @param {String} infoHash - infoHash of the torrent
+     */
+    function openTorrent(infoHash) {
+        const found = torrents.value.find(t => t.infoHash === infoHash);
+
+        files.value = found.files;
+        root.value = found.name;
+
+        router.push(`/torrent/${found.name}`);
+    }
+
+    return { torrents, addTorrent, openTorrent, files, root };
 }
