@@ -167,30 +167,49 @@ body {
 }
 
 // overrides for .folder and .file
-.folder,
+.folder {
+    grid-template-columns: 50px 5fr 1fr 1fr;
+    .folder-icon > svg {
+        fill: #6d4c40;
+        font-size: 30px;
+    }
+}
+
 .file {
     grid-template-columns: 5fr 1fr 1fr;
 }
 
 @media (max-width: 768px) {
-    .folder,
     .file {
         grid-template-columns: auto 4fr 1fr;
 
-        .folder-name,
         .file-name {
             grid-column: 1 / span 2;
         }
 
-        .folder-count,
         .file-size {
             grid-row: 2;
             grid-column: 1;
         }
 
-        .folder-download,
         .file-download {
             grid-column: 3;
+        }
+    }
+
+    .folder {
+        grid-template-columns: 40px auto 4fr 1fr;
+        .folder-name {
+            grid-column: 2 / span 2;
+        }
+
+        .folder-count {
+            grid-row: 2;
+            grid-column: 1 / span 2;
+        }
+
+        .folder-download {
+            grid-column: 4;
         }
     }
 }
