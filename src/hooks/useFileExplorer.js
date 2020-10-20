@@ -24,6 +24,11 @@ export default function(files, root) {
      * @param {Array} path - Path excluding the torrent name.
      */
     function openFolder(path) {
+        if (!path || !path.length) {
+            // reset to initial value
+            currentFolder.value = tree.value;
+            return;
+        }
         currentFolder.value = tree.value.getContents(path);
     }
 

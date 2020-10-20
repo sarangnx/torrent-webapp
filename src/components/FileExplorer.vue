@@ -31,11 +31,10 @@ export default {
         const { tree, openFolder, currentFolder, changeRoute } = useFileExplorer(props.files, props.root);
 
         // open folder when route changes
-        watch([props], () => {
-            if (props.paths && props.paths.length !== 0) {
-                openFolder(props.paths);
-            }
-        });
+        watch(
+            () => props.paths,
+            paths => openFolder(paths)
+        );
 
         return { tree, openFolder, currentFolder, changeRoute };
     }
