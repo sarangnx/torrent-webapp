@@ -1,5 +1,6 @@
 <template>
     <div class="file-explorer">
+        <controls />
         <component
             v-for="file in currentFolder.children"
             :key="file.name"
@@ -15,11 +16,13 @@ import { watch } from 'vue';
 import useFileExplorer from '@/hooks/useFileExplorer';
 import Folder from './Folder';
 import File from './File';
+import Controls from './Controls';
 
 export default {
     components: {
         Folder,
-        File
+        File,
+        Controls
     },
     props: {
         files: Array,
