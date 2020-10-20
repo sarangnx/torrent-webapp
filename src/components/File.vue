@@ -1,6 +1,6 @@
 <template>
     <div class="file">
-        <span class="file-name" :title="file.name">{{ file.name }}</span>
+        <span class="file-name" :title="item.name">{{ item.name }}</span>
         <span class="file-size">{{ sizeComputed }}</span>
         <button class="file-download button" @click.stop @dblclick.stop>
             <svg width="1em" height="1em" viewBox="0 0 16 16">
@@ -22,11 +22,11 @@ import bytes from 'bytes';
 
 export default {
     props: {
-        file: Object
+        item: Object
     },
     computed: {
         sizeComputed() {
-            return bytes(this.file.length);
+            return bytes(this.item.length);
         }
     }
 };

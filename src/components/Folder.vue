@@ -1,7 +1,7 @@
 <template>
-    <div class="folder">
-        <span class="folder-name">{{ folder }}</span>
-        <span class="folder-count">{{ children.length }} Files</span>
+    <div class="folder" @click.stop="test(item.path)">
+        <span class="folder-name">{{ item.name }}</span>
+        <span class="folder-count">{{ item.count }} Files</span>
         <button class="folder-download button" @click.stop @dblclick.stop>
             <svg width="1em" height="1em" viewBox="0 0 16 16">
                 <path
@@ -20,8 +20,12 @@
 <script>
 export default {
     props: {
-        folder: String,
-        children: Array
+        item: Object
+    },
+    methods: {
+        test(f) {
+            console.log(f);
+        }
     }
 };
 </script>

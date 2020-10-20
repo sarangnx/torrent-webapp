@@ -1,6 +1,6 @@
 <template>
     <div class="file-explorer">
-        <component v-for="file in tree.children" :key="file.name" :is="file.type" v-bind="dynProps(file)"></component>
+        <component v-for="file in tree.children" :key="file.name" :is="file.type" :item="file"></component>
     </div>
 </template>
 
@@ -17,15 +17,6 @@ export default {
     props: {
         files: Array,
         root: String
-    },
-    methods: {
-        dynProps(file) {
-            if (file.type === 'folder') {
-                return { folder: file.name, children: file.children };
-            } else {
-                return { file };
-            }
-        }
     },
     setup(props) {
         const { tree } = useFileExplorer(props.files, props.root);
