@@ -38,7 +38,6 @@ export default {
         watch(
             () => props.torrent,
             torrent => {
-                console.log(torrent);
                 if (torrent) {
                     openTorrent(props.torrent);
                 }
