@@ -1,5 +1,4 @@
 import { ref } from 'vue';
-import File from '@/utils/File';
 import Folder from '@/utils/Folder';
 
 export default function(files, root) {
@@ -13,5 +12,5 @@ export default function(files, root) {
         tree.value.add(file);
     });
 
-    return { tree, File, Folder };
+    return { tree };
 }

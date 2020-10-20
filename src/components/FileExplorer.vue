@@ -28,9 +28,9 @@ export default {
         }
     },
     setup(props) {
-        const { tree, File, Folder } = useFileExplorer(props.files, props.root);
+        const { tree } = useFileExplorer(props.files, props.root);
 
-        return { tree, File, Folder };
+        return { tree };
     }
 };
 </script>
