@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import Folder from '@/utils/Folder';
+import router from '@/router';
 
 export default function(files, root) {
     const tree = ref(null);
@@ -16,9 +17,24 @@ export default function(files, root) {
     // tree is initial value of currentFolder
     currentFolder.value = tree.value;
 
+    /**
+     * Open a folder. Get contents of a folder using path.
+     * Contents are then added to currentFolder
+     *
+     * @param {Array} path - Path excluding the torrent name.
+     */
     function openFolder(path) {
         currentFolder.value = tree.value.getContents(path);
     }
 
-    return { tree, openFolder, currentFolder };
+    /**
+     * Change Route. Folders are opened by changing the routes.
+     *
+     * @param {String} path - folder path including the torrent name
+     */
+    function changeRoute(path) {
+        router.push(`/torrent/${path}`);
+    }
+
+    return { tree, openFolder, currentFolder, changeRoute };
 }
