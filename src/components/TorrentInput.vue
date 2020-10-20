@@ -9,7 +9,7 @@
                     v-model="link"
                     @keyup.enter="sendLink"
                 />
-                <button class="button" @click="sendLink">
+                <button class="button" @click="sendLink" title="Send Magnet Link / Link to .torrent file">
                     <svg width="1em" height="1em" viewBox="0 0 16 16">
                         <path
                             fill-rule="evenodd"
@@ -20,7 +20,7 @@
             </div>
             <div class="torrent-file">
                 <input type="file" accept=".torrent" class="hidden" @change="loadFile($event)" ref="file" />
-                <button class="button" @click="openFileSelector">
+                <button class="button" @click="openFileSelector" title="Upload .torrent file">
                     <svg width="1em" height="1em" viewBox="0 0 16 16">
                         <path
                             fill-rule="evenodd"
@@ -34,7 +34,7 @@
                 </button>
             </div>
             <div class="google-drive">
-                <button class="button">
+                <button class="button" title="Authorize Google Drive">
                     <svg width="1em" height="1em" viewBox="0 0 512 512">
                         <path
                             d="M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z"
