@@ -45,10 +45,23 @@ export default class Folder {
     /**
      * Get contents of a folder by path
      *
-     * @param {String} path - Full path
+     * @param {Array} path - Path array excluding the name of torrent (root folder)
      */
     getContents(path) {
-        return this.children.find(item => item.path === path);
+        if (path instanceof String || typeof path === 'string') {
+            path = path.split('/');
+        }
+
+        // remove first element from path array and set to base
+        let base = path.shift();
+
+        const result = this.children.find(item => item.name === base);
+
+        if (path.length === 0) {
+            return result;
+        }
+
+        return result.getContents(path);
     }
 
     /**
