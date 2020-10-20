@@ -16,6 +16,14 @@ export default class Folder {
         this.path = path;
         // files and sub-folders are stored here
         this.children = [];
+        this._pathArray = this.path.split('/');
+
+        // parent of items in root folder is null
+        if (this._pathArray.length === 1) {
+            this._parent = null;
+        }
+        let parentPath = this._pathArray.slice(0, -1);
+        this._parent = parentPath.join('/');
     }
 
     get type() {
@@ -28,6 +36,19 @@ export default class Folder {
      */
     get count() {
         return this.children.length;
+    }
+
+    get parent() {
+        return this._parent;
+    }
+
+    /**
+     * Get contents of a folder by path
+     *
+     * @param {String} path - Full path
+     */
+    getContents(path) {
+        return this.children.find(item => item.path === path);
     }
 
     /**
