@@ -84,3 +84,112 @@ body {
         outline: none;
     }
 }
+
+.torrent-list,
+.file-explorer {
+    display: grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    row-gap: 1rem;
+    margin-top: 4rem;
+}
+
+.torrent-item,
+.folder,
+.file {
+    grid-column: 2;
+    background: #faece7;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr;
+    align-items: center;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid transparent;
+    color: #6d4c40;
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: 0px 0px 4px -2px #6d4c40;
+
+    &:hover,
+    &:focus {
+        border: 1px solid #6d4c40;
+    }
+
+    .torrent-item-download,
+    .folder-download,
+    .file-download {
+        width: 60px;
+        justify-self: end;
+    }
+
+    .torrent-item-size,
+    .torrent-item-count,
+    .folder-count,
+    .file-size {
+        justify-self: center;
+    }
+
+    .torrent-item-name,
+    .folder-name,
+    .file-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 768px) {
+    .torrent-item {
+        grid-template-columns: auto auto 4fr 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+
+        .torrent-item-name {
+            grid-column: 1 / span 3;
+        }
+
+        .torrent-item-size {
+            grid-row: 2;
+            grid-column: 1;
+        }
+
+        .torrent-item-count {
+            grid-row: 2;
+            grid-column: 2;
+        }
+
+        .torrent-item-download {
+            grid-row: 1 / span 2;
+            grid-column: 4;
+        }
+    }
+}
+
+// overrides for .folder and .file
+.folder,
+.file {
+    grid-template-columns: 5fr 1fr 1fr;
+}
+
+@media (max-width: 768px) {
+    .folder,
+    .file {
+        grid-template-columns: auto 4fr 1fr;
+
+        .folder-name,
+        .file-name {
+            grid-column: 1 / span 2;
+        }
+
+        .folder-count,
+        .file-size {
+            grid-row: 2;
+            grid-column: 1;
+        }
+
+        .folder-download,
+        .file-download {
+            grid-column: 3;
+        }
+    }
+}
