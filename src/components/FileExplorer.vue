@@ -28,7 +28,7 @@ export default {
         paths: [String, Array]
     },
     setup(props) {
-        const { tree, openFolder, currentFolder, changeRoute } = useFileExplorer(props.files, props.root);
+        const { tree, openFolder, currentFolder, changeRoute } = useFileExplorer(props.files, props.root, props.paths);
 
         // open folder when route changes
         watch(

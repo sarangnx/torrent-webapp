@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import Folder from '@/utils/Folder';
 import router from '@/router';
 
-export default function(files, root) {
+export default function(files, root, paths) {
     const tree = ref(null);
     const currentFolder = ref(null);
 
@@ -39,6 +39,11 @@ export default function(files, root) {
      */
     function changeRoute(path) {
         router.push(`/torrent/${path}`);
+    }
+
+    // for retaining current folder in case of reload or direct routing
+    if (paths && paths.length !== 0) {
+        openFolder(paths);
     }
 
     return { tree, openFolder, currentFolder, changeRoute };
