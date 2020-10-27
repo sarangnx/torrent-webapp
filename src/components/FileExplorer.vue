@@ -7,6 +7,7 @@
             :is="file.type"
             :item="file"
             @open-folder="changeRoute"
+            @download="$emit('download', $event)"
         ></component>
     </div>
 </template>

@@ -13,7 +13,7 @@
         </span>
         <span class="folder-name">{{ item.name }}</span>
         <span class="folder-count">{{ item.count }} Files</span>
-        <button class="folder-download button" @click.stop @dblclick.stop>
+        <button class="folder-download button" @click.stop="download" @dblclick.stop>
             <svg width="1em" height="1em" viewBox="0 0 16 16">
                 <path
                     fill-rule="evenodd"
@@ -36,6 +36,9 @@ export default {
     methods: {
         openFolder(path) {
             this.$emit('open-folder', path);
+        },
+        download() {
+            this.$emit('download', { type: 'folder', item: this.item });
         }
     }
 };

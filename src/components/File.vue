@@ -2,7 +2,7 @@
     <div class="file">
         <span class="file-name" :title="item.name">{{ item.name }}</span>
         <span class="file-size">{{ sizeComputed }}</span>
-        <button class="file-download button" @click.stop @dblclick.stop>
+        <button class="file-download button" @click.stop="download" @dblclick.stop>
             <svg width="1em" height="1em" viewBox="0 0 16 16">
                 <path
                     fill-rule="evenodd"
@@ -27,6 +27,11 @@ export default {
     computed: {
         sizeComputed() {
             return bytes(this.item.length);
+        }
+    },
+    methods: {
+        download() {
+            this.$emit('download', { type: 'file', item: this.item });
         }
     }
 };

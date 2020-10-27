@@ -3,7 +3,7 @@
         <span class="torrent-item-name" :title="name">{{ name }}</span>
         <span class="torrent-item-size">{{ sizeComputed }}</span>
         <span class="torrent-item-count">{{ fileCount }} File{{ fileCount > 1 ? 's' : '' }}</span>
-        <button class="torrent-item-download button" @click.stop @dblclick.stop>
+        <button class="torrent-item-download button" @click.stop="download" @dblclick.stop>
             <svg width="1em" height="1em" viewBox="0 0 16 16">
                 <path
                     fill-rule="evenodd"
@@ -30,6 +30,11 @@ export default {
     computed: {
         sizeComputed() {
             return bytes(this.size);
+        }
+    },
+    methods: {
+        download() {
+            this.$emit('download', { type: 'torrent', name: this.name });
         }
     }
 };
