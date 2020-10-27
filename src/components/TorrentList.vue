@@ -8,6 +8,7 @@
             :fileCount="torrent.files.length"
             @click="openTorrent(torrent.name, $event)"
             @dblclick="openTorrent(torrent.name, $event)"
+            @download="$emit('download', $event)"
         />
     </div>
 </template>
