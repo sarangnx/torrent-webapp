@@ -13,3 +13,14 @@ export function handleAxiosError(error) {
         store.dispatch('notifications/notify', { message: 'Something Went Wrong!', type: 'error' });
     }
 }
+
+/**
+ * Show success message on axios request completion
+ *
+ * @param {Object} response - Axios Response Object
+ */
+export function handleAxiosSuccess(response) {
+    if (response && response.data && response.data.message) {
+        store.dispatch('notifications/notify', { message: response.data.message, type: 'success' });
+    }
+}
