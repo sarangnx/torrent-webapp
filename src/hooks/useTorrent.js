@@ -2,6 +2,7 @@ import { ref, computed } from 'vue';
 import axios from 'axios';
 import store from '@/store';
 import router from '@/router';
+import { handleAxiosError, handleAxiosSuccess } from '@/utils';
 
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
@@ -40,11 +41,7 @@ export default function(torrentName) {
                 torrents.value.push(res.data.metadata);
             }
         } catch (err) {
-            if (err.response && err.response.data && err.response.data.message) {
-                store.dispatch('notifications/notify', { message: err.response.data.message, type: 'error' });
-            } else {
-                store.dispatch('notifications/notify', { message: 'Something Went Wrong!', type: 'error' });
-            }
+            handleAxiosError(err);
         }
     }
 
@@ -77,11 +74,7 @@ export default function(torrentName) {
                 }
             }
         } catch (err) {
-            if (err.response && err.response.data && err.response.data.message) {
-                store.dispatch('notifications/notify', { message: err.response.data.message, type: 'error' });
-            } else {
-                store.dispatch('notifications/notify', { message: 'Something Went Wrong!', type: 'error' });
-            }
+            handleAxiosError(err);
         }
     }
 
@@ -112,5 +105,29 @@ export default function(torrentName) {
         router.push(`/torrent/${name}`);
     }
 
-    return { torrents, addTorrent, openTorrent, files, root, changeRoute };
+    /**
+     * Send request to server with torrent details to start download
+     *
+     * @param {Object} data - Torrent details
+     */
+    async function download(data) {
+        // find name of torrent from path
+        if (data.type !== 'torrent') {
+            data.name = data.item.path.split('/')[0];
+        }
+
+        try {
+            const res = await axios({
+                method: 'post',
+                url: '/torrent/download',
+                data
+            });
+
+            handleAxiosSuccess(res);
+        } catch (err) {
+            handleAxiosError(err);
+        }
+    }
+
+    return { torrents, addTorrent, openTorrent, files, root, changeRoute, download };
 }
