@@ -89,7 +89,7 @@ body {
 .file-explorer {
     display: grid;
     grid-template-columns: 1fr 10fr 1fr;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
     margin-top: 4rem;
     margin-bottom: 6rem;
 }
@@ -98,8 +98,7 @@ body {
 .folder,
 .file {
     grid-column: 2;
-    background: #faece7;
-    padding: 1rem;
+    padding: 0.5rem;
     display: grid;
     grid-template-columns: 4fr 1fr 1fr 1fr;
     align-items: center;
@@ -109,7 +108,6 @@ body {
     color: #6d4c40;
     font-weight: 500;
     font-size: 0.9rem;
-    box-shadow: 0px 0px 4px -2px #6d4c40;
 
     &:hover,
     &:focus {
@@ -119,8 +117,12 @@ body {
     .torrent-item-download,
     .folder-download,
     .file-download {
-        width: 60px;
         justify-self: end;
+        padding: 0.5rem;
+        svg {
+            height: 1.1rem;
+            width: 1.1rem;
+        }
     }
 
     .torrent-item-size,
@@ -168,10 +170,10 @@ body {
 
 // overrides for .folder and .file
 .folder {
-    grid-template-columns: 50px 5fr 1fr 1fr;
+    grid-template-columns: 40px 5fr 1fr 1fr;
     .folder-icon > svg {
         fill: #6d4c40;
-        font-size: 30px;
+        font-size: 20px;
     }
 }
 
@@ -190,15 +192,18 @@ body {
         .file-size {
             grid-row: 2;
             grid-column: 1;
+            font-size: 0.7em;
+            font-weight: bold;
         }
 
         .file-download {
             grid-column: 3;
+            grid-row: 1 / span 2;
         }
     }
 
     .folder {
-        grid-template-columns: 40px auto 4fr 1fr;
+        grid-template-columns: 30px auto 4fr 1fr;
         .folder-name {
             grid-column: 2 / span 2;
         }
@@ -206,10 +211,13 @@ body {
         .folder-count {
             grid-row: 2;
             grid-column: 1 / span 2;
+            font-size: 0.7em;
+            font-weight: bold;
         }
 
         .folder-download {
             grid-column: 4;
+            grid-row: 1 / span 2;
         }
     }
 }
