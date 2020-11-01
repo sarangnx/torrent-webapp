@@ -12,6 +12,7 @@
         "bytes": "^3.1.0",
         "core-js": "^3.6.5",
         "normalize.css": "^8.0.1",
+        "socket.io-client": "^2.3.1",
         "uuid": "^8.3.1",
         "validator": "^13.1.17",
         "vue": "^3.0.0-0",
