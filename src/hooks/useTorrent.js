@@ -116,6 +116,8 @@ export default function(torrentName) {
             data.name = data.item.path.split('/')[0];
         }
 
+        data.uid = uid.value;
+
         try {
             const res = await axios({
                 method: 'post',
@@ -129,5 +131,5 @@ export default function(torrentName) {
         }
     }
 
-    return { torrents, addTorrent, openTorrent, files, root, changeRoute, download };
+    return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid };
 }
