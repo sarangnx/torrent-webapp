@@ -1,6 +1,6 @@
 <template>
     <div class="controls">
-        <button class="button" title="Go Back" @click="goBack">
+        <button class="button go-back" title="Go Back" @click="goBack">
             <svg width="1em" height="1em" viewBox="0 0 16 16">
                 <path
                     fill-rule="evenodd"
@@ -38,5 +38,8 @@ export default {
 <style lang="scss">
 .controls {
     grid-column: 2;
+    .go-back {
+        padding: 0.5rem 1rem;
+    }
 }
 </style>
