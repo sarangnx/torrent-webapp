@@ -1,6 +1,6 @@
 <template>
     <top-bar />
-    <torrent-input @upload="addTorrent" />
+    <torrent-input @upload="addTorrent" :uid="uid" />
     <empty-page v-if="!torrents || !torrents.length" />
     <router-view v-else v-bind="dynProps" @open-torrent="changeRoute" @download="download" />
 </template>
@@ -32,7 +32,9 @@ export default {
         }
     },
     setup(props) {
-        const { torrents, addTorrent, openTorrent, files, root, changeRoute, download } = useTorrent(props.torrent);
+        const { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid } = useTorrent(
+            props.torrent
+        );
 
         // open torrent when route changes
         watch(
@@ -44,7 +46,7 @@ export default {
             }
         );
 
-        return { torrents, addTorrent, openTorrent, files, root, changeRoute, download };
+        return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid };
     }
 };
 </script>
