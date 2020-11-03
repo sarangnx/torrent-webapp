@@ -1,5 +1,5 @@
 <template>
-    <div class="file">
+    <div class="file" :style="style">
         <span class="file-name" :title="item.name">{{ item.name }}</span>
         <span class="file-size">{{ sizeComputed }}</span>
         <button class="file-download button" @click.stop="download" @dblclick.stop>
@@ -22,11 +22,22 @@ import bytes from 'bytes';
 
 export default {
     props: {
-        item: Object
+        item: Object,
+        progress: Object
     },
     computed: {
         sizeComputed() {
             return bytes(this.item.length);
+        },
+        style() {
+            if (this.progress) {
+                let progress = Math.floor((this.progress.bytesRead / this.item.length) * 100);
+
+                return {
+                    background: `linear-gradient(to right, #a1ff9e ${progress}%, transparent 0%)`
+                };
+            }
+            return { background: 'transparent' };
         }
     },
     methods: {
