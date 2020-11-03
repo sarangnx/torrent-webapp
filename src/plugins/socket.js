@@ -46,6 +46,16 @@ class SocketIO {
         this.roomId = id;
         this.socket.emit('join:room', id);
     }
+
+    /**
+     * Listen to socket events
+     *
+     * @param {String} event - Event Name
+     * @param {Function} callback - Function to call on event
+     */
+    on(event, callback) {
+        this.socket.on(event, callback);
+    }
 }
 
 export default new SocketIO();
