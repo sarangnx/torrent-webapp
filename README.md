@@ -1,5 +1,7 @@
 # black pearl
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6c070de2-818c-492e-876a-25868afd3aeb/deploy-status)](https://app.netlify.com/sites/black-pearl/deploys)
+
 Web app for [sarangnx/torrent-server](https://github.com/sarangnx/torrent-server).
 
 ## Project setup
