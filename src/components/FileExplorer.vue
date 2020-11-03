@@ -8,6 +8,7 @@
             :item="file"
             @open-folder="changeRoute"
             @download="$emit('download', $event)"
+            :progress="file.path === progress.path ? progress : null"
         ></component>
     </div>
 </template>
@@ -29,7 +30,8 @@ export default {
         files: Array,
         root: String,
         torrent: String,
-        paths: [String, Array]
+        paths: [String, Array],
+        progress: Object
     },
     setup(props) {
         const { tree, openFolder, currentFolder, changeRoute } = useFileExplorer(props.files, props.root, props.paths);

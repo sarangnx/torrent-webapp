@@ -2,7 +2,7 @@
     <top-bar />
     <torrent-input @upload="addTorrent" :uid="uid" />
     <empty-page v-if="!torrents || !torrents.length" />
-    <router-view v-else v-bind="dynProps" @open-torrent="changeRoute" @download="download" />
+    <router-view v-else v-bind="dynProps" @open-torrent="changeRoute" @download="download" :progress="progress" />
 </template>
 
 <script>
@@ -11,6 +11,7 @@ import TopBar from '@/components/TopBar';
 import TorrentInput from '@/components/TorrentInput';
 import EmptyPage from '@/components/EmptyPage';
 import useTorrent from '@/hooks/useTorrent';
+import useSocket from '@/hooks/useSocket';
 
 export default {
     components: {
@@ -36,6 +37,8 @@ export default {
             props.torrent
         );
 
+        const { progress } = useSocket();
+
         // open torrent when route changes
         watch(
             () => props.torrent,
@@ -46,7 +49,7 @@ export default {
             }
         );
 
-        return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid };
+        return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid, progress };
     }
 };
 </script>
