@@ -1,6 +1,6 @@
 export default {
     install(app) {
-        app.directive('longpress', this.longpress);
+        app.directive('long-press', this.longPress);
         app.directive('click-outside', this.clickOutside);
     },
 
@@ -8,14 +8,25 @@ export default {
      * Used to simulate long press effect in touch devices.
      * bind only functions to this directive
      */
-    longpress: {
+    longPress: {
         beforeMount(el, binding) {
             let timer = null;
 
             // start timeout
-            function start() {
+            function start(event) {
                 if (timer === null) {
-                    timer = setTimeout(() => binding.value(), 500);
+                    timer = setTimeout(() => {
+                        /**
+                         * We have 2 options to use this directive
+                         * - pass a function directly to v-long-press
+                         * - pass an object with keys { handler: Function, args: Array }
+                         */
+                        if (typeof binding.value === 'function') {
+                            binding.value(event);
+                        } else if (typeof binding.value === 'object' && typeof binding.value.handler === 'function') {
+                            binding.value.handler(event, ...binding.value.args);
+                        }
+                    }, 500);
                 }
             }
 
