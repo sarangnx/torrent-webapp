@@ -1,5 +1,5 @@
 <template>
-    <div class="folder" @click.stop="openFolder(item.path)">
+    <div class="folder" @click="openFolder(item.path)">
         <span class="folder-icon">
             <svg width="1em" height="1em" viewBox="0 0 16 16">
                 <path
