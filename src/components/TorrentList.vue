@@ -38,6 +38,7 @@ export default {
         // download torrent
         function download() {
             context.emit('download', { type: 'torrent', name: selectedItem.value.name });
+            closeContextMenu();
         }
 
         // open torrent.
@@ -48,26 +49,15 @@ export default {
         // delete torrent
         function deleteTorrent() {
             context.emit('delete-torrent', selectedItem.value.name);
+            closeContextMenu();
         }
 
         // contextmenu items to be passed as props
         const menu = ref([]);
         menu.value = [
-            {
-                text: 'Open',
-                handler: openTorrent,
-                icon: markRaw(FolderOpen)
-            },
-            {
-                text: 'Download',
-                handler: download,
-                icon: markRaw(Download)
-            },
-            {
-                text: 'Delete',
-                handler: deleteTorrent,
-                icon: markRaw(Trash)
-            }
+            { text: 'Open', handler: openTorrent, icon: markRaw(FolderOpen) },
+            { text: 'Download', handler: download, icon: markRaw(Download) },
+            { text: 'Delete', handler: deleteTorrent, icon: markRaw(Trash) }
         ];
 
         return { openContextMenu, closeContextMenu, show, coords, menu, openTorrent };
