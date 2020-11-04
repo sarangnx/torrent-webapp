@@ -2,7 +2,14 @@
     <top-bar />
     <torrent-input @upload="addTorrent" :uid="uid" />
     <empty-page v-if="!torrents || !torrents.length" />
-    <router-view v-else v-bind="dynProps" @open-torrent="changeRoute" @download="download" :progress="progress" />
+    <router-view
+        v-else
+        v-bind="dynProps"
+        @open-torrent="changeRoute"
+        @download="download"
+        @delete-torrent="deleteTorrent"
+        :progress="progress"
+    />
 </template>
 
 <script>
@@ -33,9 +40,17 @@ export default {
         }
     },
     setup(props) {
-        const { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid } = useTorrent(
-            props.torrent
-        );
+        const {
+            torrents,
+            addTorrent,
+            openTorrent,
+            files,
+            root,
+            changeRoute,
+            download,
+            uid,
+            deleteTorrent
+        } = useTorrent(props.torrent);
 
         const { progress } = useSocket();
 
@@ -49,7 +64,7 @@ export default {
             }
         );
 
-        return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid, progress };
+        return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid, progress, deleteTorrent };
     }
 };
 </script>
