@@ -131,5 +131,27 @@ export default function(torrentName) {
         }
     }
 
-    return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid };
+    /**
+     * Send request to server to remove torrent from list
+     *
+     * @param {Object} name - Torrent name
+     */
+    async function deleteTorrent(name) {
+        try {
+            const res = await axios({
+                method: 'delete',
+                url: '/torrent/delete',
+                data: {
+                    uid: uid.value,
+                    name
+                }
+            });
+
+            handleAxiosSuccess(res);
+        } catch (err) {
+            handleAxiosError(err);
+        }
+    }
+
+    return { torrents, addTorrent, openTorrent, files, root, changeRoute, download, uid, deleteTorrent };
 }
