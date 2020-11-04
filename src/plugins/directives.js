@@ -1,6 +1,7 @@
 export default {
     install(app) {
         app.directive('longpress', this.longpress);
+        app.directive('click-outside', this.clickOutside);
     },
 
     /**
@@ -29,6 +30,26 @@ export default {
             el.addEventListener('touchstart', start);
             el.addEventListener('touchend', cancel);
             el.addEventListener('touchcancel', cancel);
+        }
+    },
+    /**
+     * Used to simulate click outside of any element.
+     * can be used to close any modals or menu when clicked outside.
+     */
+    clickOutside: {
+        beforeMount(el, binding) {
+            function eventHandler(event) {
+                if (!el.contains(event.target) && el !== event.target) {
+                    binding.value(event);
+                }
+            }
+
+            el.__vueClickHandler = eventHandler;
+
+            document.body.addEventListener('click', el.__vueClickHandler);
+        },
+        unmounted(el) {
+            document.body.removeEventListener('click', el.__vueClickHandler);
         }
     }
 };
