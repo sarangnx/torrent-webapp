@@ -36,10 +36,10 @@ export default {
         },
         style() {
             if (this.progress) {
-                let progress = Math.floor((this.progress.bytesRead / this.item.length) * 100);
+                let progress = (this.progress.bytesRead / this.item.length) * 100;
 
                 return {
-                    background: `linear-gradient(to right, #a1ff9e ${progress}%, transparent 0%) no-repeat`
+                    background: `linear-gradient(to right, #a1ff9e ${progress.toFixed(2)}%, transparent 0%) no-repeat`
                 };
             }
             return { background: 'transparent' };
