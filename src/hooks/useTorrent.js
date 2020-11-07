@@ -148,6 +148,11 @@ export default function(torrentName) {
             });
 
             handleAxiosSuccess(res);
+
+            if (res.status === 200) {
+                const index = torrents.value.findIndex(torrent => torrent.name === name);
+                torrents.value.splice(index, 1);
+            }
         } catch (err) {
             handleAxiosError(err);
         }
