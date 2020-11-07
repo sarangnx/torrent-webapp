@@ -1,18 +1,28 @@
 import { ref } from 'vue';
 import Folder from '@/utils/Folder';
+import File from '@/utils/File';
 import router from '@/router';
 
 export default function(files, root, paths) {
+    // check if the torrent is just for a single file, without any folders
+    // then the path or torrent and name is same
+    const isSingleFileTorrent = files[0].path === root;
+
     const tree = ref(null);
     const currentFolder = ref(null);
 
     // create root folder
     tree.value = new Folder(root, root);
 
-    // add all the files to tree
-    files.forEach(file => {
-        tree.value.add(file);
-    });
+    if (isSingleFileTorrent) {
+        // add single file to tree
+        tree.value.children.push(new File(files[0]));
+    } else {
+        // add all the files to tree
+        files.forEach(file => {
+            tree.value.add(file);
+        });
+    }
 
     // tree is initial value of currentFolder
     currentFolder.value = tree.value;

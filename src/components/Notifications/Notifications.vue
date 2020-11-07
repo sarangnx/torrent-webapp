@@ -35,6 +35,7 @@ export default {
 
 <style lang="scss">
 .notifications {
+    z-index: 1000;
     display: grid;
     grid-gap: 1rem;
     height: 100%;
