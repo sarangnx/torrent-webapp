@@ -1,5 +1,5 @@
 <template>
-    <div class="file" :style="style">
+    <div class="file" :style="style" :class="{ downloading: progress }">
         <span class="file-name" :title="item.name">{{ item.name }}</span>
         <span class="file-size">{{ sizeComputed }}</span>
         <button class="file-download button" @click.stop="download" @dblclick.stop>
@@ -14,6 +14,7 @@
                 />
             </svg>
         </button>
+        <span class="progress" v-if="progress"> {{ progressComputed }}</span>
     </div>
 </template>
 
@@ -29,12 +30,16 @@ export default {
         sizeComputed() {
             return bytes(this.item.length);
         },
+        progressComputed() {
+            if (this.progress) return `${bytes(this.progress.bytesRead)} / ${this.sizeComputed}`;
+            return '';
+        },
         style() {
             if (this.progress) {
                 let progress = Math.floor((this.progress.bytesRead / this.item.length) * 100);
 
                 return {
-                    background: `linear-gradient(to right, #a1ff9e ${progress}%, transparent 0%)`
+                    background: `linear-gradient(to right, #a1ff9e ${progress}%, transparent 0%) no-repeat`
                 };
             }
             return { background: 'transparent' };

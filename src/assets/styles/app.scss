@@ -97,6 +97,7 @@ body {
 .torrent-item,
 .folder,
 .file {
+    position: relative;
     grid-column: 2;
     padding: 0.5rem;
     display: grid;
@@ -139,6 +140,22 @@ body {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .progress {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.7rem;
+        padding: 0.5rem;
+        border-radius: 20px;
+        background: #077503;
+        color: #fff;
+    }
+
+    &.downloading {
+        box-shadow: 0px 0px 25px -15px black;
     }
 }
 
